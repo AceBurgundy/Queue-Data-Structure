@@ -34,7 +34,9 @@ export class Queue {
         } else {
             /* this will allow values to be added to the array if
                 the length of the array is not equal to the size of the array */
-            if (this.array.length != this.size) {
+            if (element.length > 1) {
+                return
+            } else if (this.array.length != this.size) {
                 this.array.push(element)
                 this.last = this.array.lastIndexOf(element)
                 this.valuesAdded += 1
