@@ -71,13 +71,15 @@ const text = document.getElementById("inputHolder")
 function insertQueue() {
     if (queue.insert(text.value) == "Queue overflow!") {
         makeError("Queue Overflow!")
-    } else if (text.value.trim() != "") {
+    } else if (text.value.length > 1) {
+        makeToastNotification("Letters Only!")
+    } else if (text.value.trim() == "") {
+        makeToastNotification("Input Needed!")
+    } else {
         text.value = ""
         let sound = new Audio(`sounds/green.mp3`)
         sound.play()
         show()
-    } else {
-        makeToastNotification("Input Needed!")
     }
 }
 
