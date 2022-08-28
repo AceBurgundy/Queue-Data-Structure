@@ -39,7 +39,7 @@ body {
 }
 
 .toast-message.active {
-    top: 5%;
+    top: 2%;
 }
 
 .menu {
