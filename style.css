@@ -194,6 +194,42 @@ body {
     font-size: 3rem;
 }
 
+.legend {
+    display: flex;
+    gap: 2rem;
+    position: absolute;
+    top: 0%;
+    right: 0%;
+    margin: 1em;
+}
+
+.legend-container {
+    display: flex;
+    gap: 0.5em;
+    align-items: center;
+}
+
+.color {
+    width: 2rem;
+    height: 2rem;
+}
+
+.legend-name {
+    color: white;
+}
+
+#blue {
+    background-color: blue;
+}
+
+#red {
+    background-color: red;
+}
+
+#orange {
+    background-color: orange;
+}
+
 .controls {
     position: absolute;
     right: 0%;
