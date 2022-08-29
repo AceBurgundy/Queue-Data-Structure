@@ -4,8 +4,7 @@ import { makeError, makeToastNotification } from "./helper.js"
 let queue = new Queue()
 
 document.querySelector(".start").addEventListener("click", () => {
-    console.log(document.querySelector(".menu-input").value);
-    if (document.querySelector(".menu-input").value != 5) {
+    if (document.querySelector(".menu-input").value != "") {
         queue.size = parseInt(document.querySelector(".menu-input").value)
         show()
         document.querySelector(".menu").classList.remove("active")
@@ -68,7 +67,18 @@ document.addEventListener("DOMContentLoaded", () => {
 
 const text = document.getElementById("inputHolder")
 
+document.querySelector(".start").addEventListener("click", () => {
+    setTimeout(() => {
+        document.querySelector("#hint").classList.add("active")
+    }, 2000);
+})
+
+document.querySelector("#inputHolder").addEventListener("click", () => {
+    document.querySelector("#hint").classList.remove("active")
+})
+
 function insertQueue() {
+    document.querySelector("#hint").classList.remove("active")
     if (queue.insert(text.value) == "Queue overflow!") {
         makeError("Queue Overflow!")
     } else if (text.value.length > 1) {

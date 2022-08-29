@@ -24,6 +24,100 @@ body {
     box-sizing: border-box;
 }
 
+#input-getter {
+    position: relative;
+}
+
+#hint {
+    position: absolute;
+    bottom: 150%;
+    width: 100%;
+    background-color: #25292C;
+    padding: 0.5em;
+    position: absolute;
+    z-index: 1;
+    align-items: center;
+    justify-content: center;
+    display: none;
+}
+
+#inputHolder {
+    text-transform: uppercase;
+}
+
+#hint-message {
+    color: white;
+    font-family: var(--game-font);
+    font-size: 3rem;
+}
+
+.arrow {
+    width: 0;
+    height: 0;
+    border-left: 50px solid transparent;
+    border-right: 50px solid transparent;
+    border-top: 100px solid red;
+}
+
+#hint.active {
+    display: flex;
+}
+
+.blinktext {
+    -webkit-animation: blink-text 800ms linear infinite;
+    -moz-animation: blink-text 800ms linear infinite;
+    -ms-animation: blink-text 800ms linear infinite;
+    -o-animation: blink-text 800ms linear infinite;
+    animation: blink-text 1000ms linear infinite;
+}
+
+@keyframes blink-text {
+    0% {
+        color: black;
+        opacity: 1;
+    }
+    20% {
+        color: black;
+        opacity: .8;
+    }
+    30% {
+        color: black;
+        opacity: .6;
+    }
+    40% {
+        color: black;
+        opacity: .4;
+    }
+    50% {
+        color: black;
+        opacity: .2;
+    }
+    60% {
+        color: black;
+        opacity: 0;
+    }
+    70% {
+        color: black;
+        opacity: .2;
+    }
+    80% {
+        color: black;
+        opacity: .4;
+    }
+    90% {
+        color: black;
+        opacity: .6;
+    }
+    98% {
+        color: black;
+        opacity: .8;
+    }
+    100% {
+        color: black;
+        opacity: 1;
+    }
+}
+
 .toast-message {
     font-family: var(--game-font);
     font-size: 3rem;
