@@ -9,7 +9,8 @@ document.querySelector(".start").addEventListener("click", () => {
         show()
         document.querySelector(".menu").classList.remove("active")
     } else {
-        queue.size = 5
+        queue.infinity = 'true'
+        queue.size = 0
         show()
         document.querySelector(".menu").classList.remove("active")
     }
@@ -37,6 +38,13 @@ function show() {
 
     document.querySelector('.controls').scrollLeft = bodyScrollwidth
 
+    if (queue.size == 0) {
+        let boxes = document.createElement('div')
+        boxes.className = 'box'
+        queue.getQueue()[0] == undefined ? "" : boxes.innerHTML = queue.getQueue()[0]
+        array.appendChild(boxes)
+    }
+
     for (let index = 0; index < queue.size; index++) {
         let boxes = document.createElement('div')
         boxes.className = 'box'
@@ -44,11 +52,15 @@ function show() {
         array.appendChild(boxes)
     }
 
-    array.children[queue.getFirst()].setAttribute("id", "first")
-    array.children[queue.getLast()].setAttribute("id", "last")
+    if (array.children[queue.getFirst()] != null) {
+        array.children[queue.getFirst()].setAttribute("id", "first")
+        array.children[queue.getLast()].setAttribute("id", "last")
+    }
 
     if (parseInt(queue.getFirst()) === 0 && parseInt(queue.getLast()) == 0) {
-        array.children[queue.getLast()].style.backgroundColor = "orange"
+        if (array.children[queue.getFirst()] != null) {
+            array.children[queue.getLast()].style.backgroundColor = "orange"
+        }
     } else {
         array.children[queue.getFirst()].style.backgroundColor = "blue"
         array.children[queue.getLast()].style.backgroundColor = "red"
@@ -67,14 +79,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
 const text = document.getElementById("inputHolder")
 
+document.querySelector("#inputHolder").addEventListener("click", () => {
+    document.querySelector("#hint").classList.remove("active")
+})
+
+
 document.querySelector(".start").addEventListener("click", () => {
     setTimeout(() => {
         document.querySelector("#hint").classList.add("active")
     }, 2000);
-})
-
-document.querySelector("#inputHolder").addEventListener("click", () => {
-    document.querySelector("#hint").classList.remove("active")
 })
 
 function insertQueue() {
@@ -82,7 +95,7 @@ function insertQueue() {
     if (queue.insert(text.value) == "Queue overflow!") {
         makeError("Queue Overflow!")
     } else if (text.value.length > 1) {
-        makeToastNotification("Letters Only!")
+        makeToastNotification("1 Value Only!")
     } else if (text.value.trim() == "") {
         makeToastNotification("Input Needed!")
     } else {
