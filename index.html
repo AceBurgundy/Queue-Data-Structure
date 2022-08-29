@@ -15,24 +15,34 @@
 <body>
     <div class="menu">
         <p class="title">Queue</p>
-        <div class="menu-options">
-            <input class="menu-input" type="number" placeholder="Add queue size">
-            <div class="start">START</div>
+        <div class="menu-options-container">
+            <div class="menu-options">
+                <div class="options" id="queue">
+                    <p>Queue</p>
+                </div>
+                <div class="options" id="circular-queue">
+                    <p id="circular-queue-text">Circular Queue</p>
+                    <input class="menu-input" type="number" placeholder="Add queue size">
+                </div>
+            </div>
+            <div class="start" data-option="">
+                < CHOOSE</div>
+                    <!-- <div id="source">SOURCE</div> -->
+            </div>
+            <div class="author">By: Sabalo BSCS</div>
         </div>
-        <div class="author">By: Sabalo BSCS</div>
-    </div>
-    <div class="prompt">
-        <p>Are you sure?</p>
-        <div class="prompt-options">
-            <div class="option" id="yes">YES</div>
-            <div class="option" id="no">NO</div>
+        <div class="prompt">
+            <p>Are you sure?</p>
+            <div class="prompt-options">
+                <div class="option" id="yes">YES</div>
+                <div class="option" id="no">NO</div>
+            </div>
         </div>
-    </div>
-    <p class="toast-message"></p>
-    <div class="error">
-        <p class="error-message"></p>
-    </div>
-    <div class="reset"><svg version="1.0" xmlns="http://www.w3.org/2000/svg" width="40.000000pt" height="40.000000pt" viewBox="0 0 90.000000 90.000000" preserveAspectRatio="xMidYMid meet">
+        <p class="toast-message"></p>
+        <div class="error">
+            <p class="error-message"></p>
+        </div>
+        <div class="reset"><svg version="1.0" xmlns="http://www.w3.org/2000/svg" width="40.000000pt" height="40.000000pt" viewBox="0 0 90.000000 90.000000" preserveAspectRatio="xMidYMid meet">
         <g transform="translate(0.000000,90.000000) scale(0.100000,-0.100000)"
         fill="#ffffff" stroke="none">
         <path d="M200 850 l0 -50 -50 0 -50 0 0 -100 0 -100 -50 0 -50 0 0 -150 0
@@ -44,35 +54,35 @@
         -250 0 0 -50z"/>
         </g>
         </svg>
-    </div>
-    <div class="legend">
-        <div class="legend-container">
-            <div class="color" id="blue"></div>
-            <p class="legend-name">FIRST</p>
         </div>
-        <div class="legend-container">
-            <div class="color" id="red"></div>
-            <p class="legend-name">LAST</p>
-        </div>
-        <div class="legend-container">
-            <div class="color" id="orange"></div>
-            <p class="legend-name">BOTH</p>
-        </div>
-    </div>
-    <div class="array-container">
-
-    </div>
-    <div class="controls">
-        <div class="button insert" id="insert">INSERT</div>
-        <div class="button" id="input-getter">
-            <div id="hint">
-                <p id="hint-message">Type a letter to start</p>
-                <div class="arrow blinktext"></div>
+        <div class="legend">
+            <div class="legend-container">
+                <div class="color" id="blue"></div>
+                <p class="legend-name">FIRST</p>
             </div>
-            <input class="game-input" type="text" id="inputHolder" placeholder="A"></div>
-        <div class="button" id="remove">REMOVE</div>
-        <div class="button" id="empty">EMPTY</div>
-    </div>
+            <div class="legend-container">
+                <div class="color" id="red"></div>
+                <p class="legend-name">LAST</p>
+            </div>
+            <div class="legend-container">
+                <div class="color" id="orange"></div>
+                <p class="legend-name">BOTH</p>
+            </div>
+        </div>
+        <div class="array-container">
+
+        </div>
+        <div class="controls">
+            <div class="button insert" id="insert">INSERT</div>
+            <div class="button" id="input-getter">
+                <div id="hint">
+                    <p id="hint-message">Type a letter to start</p>
+                    <div class="arrow blinktext"></div>
+                </div>
+                <input class="game-input" type="text" id="inputHolder" placeholder="A"></div>
+            <div class="button" id="remove">REMOVE</div>
+            <div class="button" id="empty">EMPTY</div>
+        </div>
 </body>
 
 </html>

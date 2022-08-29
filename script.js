@@ -4,15 +4,17 @@ import { makeError, makeToastNotification } from "./helper.js"
 let queue = new Queue()
 
 document.querySelector(".start").addEventListener("click", () => {
-    if (document.querySelector(".menu-input").value != "") {
+    if (document.querySelector(".menu-input").value != "" && document.querySelector(".start").getAttribute("data-option") == 'circular-queue') {
         queue.size = parseInt(document.querySelector(".menu-input").value)
         show()
         document.querySelector(".menu").classList.remove("active")
-    } else {
+    } else if (document.querySelector(".start").getAttribute("data-option") == 'queue') {
         queue.infinity = 'true'
         queue.size = 0
         show()
         document.querySelector(".menu").classList.remove("active")
+    } else if (document.querySelector(".start").getAttribute("data-option") == 'circular-queue' && document.querySelector(".start").style.color == "blue") {
+        makeToastNotification("Add a size to start")
     }
 })
 
@@ -83,6 +85,31 @@ document.querySelector("#inputHolder").addEventListener("click", () => {
     document.querySelector("#hint").classList.remove("active")
 })
 
+// document.querySelector("#source").addEventListener("click", () => {
+//     window.location.href = 'https://github.com/AceBurgundy/Aceburgundy.github.io'
+// })
+
+document.querySelector("#queue").addEventListener("click", () => {
+    document.querySelector(".start").setAttribute("data-option", "queue")
+    document.querySelector(".start").style.color = "red"
+    document.querySelector("#circular-queue-text").nextElementSibling.style.display = "none"
+    document.querySelector("#circular-queue-text").parentElement.style.backgroundColor = "inherit"
+    document.querySelector(".start").textContent = "START"
+})
+
+document.querySelector(".menu-input").addEventListener("click", () => {
+    document.querySelector(".menu-input").parentElement.style.backgroundColor = "blue"
+    document.querySelector(".start").setAttribute("data-option", "circular-queue")
+    document.querySelector(".start").style.color = "blue"
+    document.querySelector(".start").textContent = "START"
+})
+document.querySelector("#circular-queue-text").addEventListener("click", () => {
+    document.querySelector("#circular-queue-text").nextElementSibling.style.display = "block"
+    document.querySelector("#circular-queue-text").parentElement.style.backgroundColor = "blue"
+    document.querySelector(".start").setAttribute("data-option", "circular-queue")
+    document.querySelector(".start").style.color = "blue"
+    document.querySelector(".start").textContent = "START"
+})
 
 document.querySelector(".start").addEventListener("click", () => {
     setTimeout(() => {
@@ -107,7 +134,7 @@ function insertQueue() {
 }
 
 document.addEventListener("keyup", (e) => {
-    if (e.key == "Enter") {
+    if (!document.querySelector(".menu").classList.contains("active")) {
         insertQueue()
     }
 })
