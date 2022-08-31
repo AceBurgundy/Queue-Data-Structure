@@ -52,16 +52,12 @@ export class Queue {
                     this.last = this.array.lastIndexOf(element)
                     this.valuesAdded += 1
                 } else {
-                    /* if it is it will loop through the list and check the first
-                        empty string that is present and will instead add the new element there */
-                    for (let index = 0; index < this.array.length; index++) {
-                        if (this.array[index] == "") {
-                            this.valuesAdded += 1
-                            this.array[index] = element
-                            this.last = index
-                            break;
-                        }
-                    }
+                    /* if it is it will loop through the list and get the index of the first element that
+                        is an empty string and use that to add the newly added element there */
+                    let firstEmptyString = this.array.firstIndexOf("")
+                    this.array[firstEmptyString] = element
+                    this.valuesAdded += 1
+                    this.last = firstEmptyString
                 }
             }
         }
@@ -84,22 +80,20 @@ export class Queue {
                 this.last = this.array.length - 1
             }
         } else {
-            let countAllEmptyStrings = 0
-                // this will count all empty strings
-            for (let index = 0; index < this.array.length; index++) {
-                if (this.array[index] == "") {
-                    countAllEmptyStrings++
-                }
+            // returns the number of empty strings
+            let emptyStrings = () => {
+                return this.array.filter(x => x == "").length
             }
-            // if there is only one letter to remove reset the queue
-            if (countAllEmptyStrings == this.array.length - 1) {
+
+            // if there are 4 empty strings, reset the queue
+            if (emptyStrings() == 4) {
                 this.valuesAdded -= 1
                 this.array[this.first] = ""
                 this.array = []
                 this.first = 0
                 this.last = 0
                     // if the array is empty or the array contains only empty strings 
-            } else if (this.array.length <= 0 || countAllEmptyStrings == this.array.length) {
+            } else if (this.array.length <= 0 || emptyStrings() == this.array.length) {
                 return "Queue underflow"
                     // if the array only has 1 value and the variable holding the first is not empty
             } else if (this.array.length == 1 && this.array[this.first] != "") {
@@ -117,11 +111,8 @@ export class Queue {
                 this.valuesAdded -= 1
                 this.first = 0;
                 this.last = 0;
-                // if there are no values added
-            } else if (this.valuesAdded == 0) {
-                return
             } else {
-                // If there is, the element on the index pointed by first will be removed
+                // change element to an empty string
                 this.array[this.first] = ""
                 this.valuesAdded -= 1
                 this.first == this.size - 1 ? this.first = 0 : this.first += 1

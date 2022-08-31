@@ -184,11 +184,11 @@ body {
 
 #queue {
     width: fit-content;
-    padding: 0.3em;
-    transition: 500ms;
+    transition: 250ms;
 }
 
 #queue:hover {
+    padding: 0.3em;
     background-color: red;
 }
 
@@ -212,13 +212,21 @@ body {
     cursor: pointer;
 }
 
-.author {
+.author,
+#source {
     font-size: 2rem;
     color: white;
     position: absolute;
-    bottom: 0%;
-    right: 0%;
     margin: 1em;
+    bottom: 0%;
+}
+
+.author {
+    right: 0%;
+}
+
+#source {
+    left: 0%;
 }
 
 .prompt {

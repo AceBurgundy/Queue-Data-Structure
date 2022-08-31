@@ -85,9 +85,9 @@ document.querySelector("#inputHolder").addEventListener("click", () => {
     document.querySelector("#hint").classList.remove("active")
 })
 
-// document.querySelector("#source").addEventListener("click", () => {
-//     window.location.href = 'https://github.com/AceBurgundy/Aceburgundy.github.io'
-// })
+document.querySelector("#source").addEventListener("click", () => {
+    window.location.href = 'https://github.com/AceBurgundy/Aceburgundy.github.io'
+})
 
 document.querySelector("#queue").addEventListener("click", () => {
     document.querySelector(".start").setAttribute("data-option", "queue")
@@ -135,7 +135,9 @@ function insertQueue() {
 
 document.addEventListener("keyup", (e) => {
     if (!document.querySelector(".menu").classList.contains("active")) {
-        insertQueue()
+        if (e.key == 'Enter') {
+            insertQueue()
+        }
     }
 })
 
