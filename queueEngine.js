@@ -54,7 +54,7 @@ export class Queue {
                 } else {
                     /* if it is it will loop through the list and get the index of the first element that
                         is an empty string and use that to add the newly added element there */
-                    let firstEmptyString = this.array.firstIndexOf("")
+                    let firstEmptyString = this.array.indexOf("")
                     this.array[firstEmptyString] = element
                     this.valuesAdded += 1
                     this.last = firstEmptyString
