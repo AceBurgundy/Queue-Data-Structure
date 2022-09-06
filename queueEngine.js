@@ -100,15 +100,9 @@ export class Queue {
                 this.array[this.first] = ""
                 this.valuesAdded -= 1
                 this.first = 0;
-                // if the length of the array is equals to its size and the variable holding the first is not empty and the next value to the first is an empty string
-            } else if (this.array.length == this.size && this.array[this.first] != "" && this.array[this.first + 1] == "") {
-                this.array[this.first] = ""
-                this.valuesAdded -= 1
-                this.first = 0;
-                // if the length of the array is equals to its size and the the variable holding the last is not empty and the prev value to the last is an empty string
-            } else if (this.array.length == this.size && this.array[this.last] != "" && this.array[this.last - 1] == "") {
-                this.array[this.first] = ""
-                this.valuesAdded -= 1
+            } else if (this.first == this.last) {
+                this.array = []
+                this.valuesAdded = 0
                 this.first = 0;
                 this.last = 0;
             } else {
