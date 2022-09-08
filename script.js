@@ -121,8 +121,8 @@ function insertQueue() {
     document.querySelector("#hint").classList.remove("active")
     if (queue.insert(text.value) == "Queue overflow!") {
         makeError("Queue Overflow!")
-    } else if (text.value.length > 1) {
-        makeToastNotification("1 Value Only!")
+    } else if (text.value.length > 2) {
+        makeToastNotification("Choose 2 or less!")
     } else if (text.value.trim() == "") {
         makeToastNotification("Input Needed!")
     } else {
