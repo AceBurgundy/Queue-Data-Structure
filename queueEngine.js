@@ -31,7 +31,7 @@ export class Queue {
         /* this will check if the values that had been added
          is also equal to the size of the queue. */
         if (this.infinity) {
-            if (element.length > 1) {
+            if (element.length > 2) {
                 return
             } else {
                 this.size += 1
