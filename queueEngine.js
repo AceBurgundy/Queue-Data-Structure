@@ -45,7 +45,7 @@ export class Queue {
             } else {
                 /* this will allow values to be added to the array if
                     the length of the array is not equal to the size of the array */
-                if (element.length > 1) {
+                if (element.length > 2) {
                     return
                 } else if (this.array.length != this.size) {
                     this.array.push(element)
