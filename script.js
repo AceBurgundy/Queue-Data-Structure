@@ -102,10 +102,12 @@ document.querySelector(".menu-input").addEventListener("click", () => {
     document.querySelector(".start").setAttribute("data-option", "circular-queue")
     document.querySelector(".start").style.color = "blue"
     document.querySelector(".start").textContent = "START"
+    document.querySelector("#circular-queue-text").parentElement.style.padding = "0.5em"
 })
 document.querySelector("#circular-queue-text").addEventListener("click", () => {
     document.querySelector("#circular-queue-text").nextElementSibling.style.display = "block"
     document.querySelector("#circular-queue-text").parentElement.style.backgroundColor = "blue"
+    document.querySelector("#circular-queue-text").parentElement.style.padding = "0.5em"
     document.querySelector(".start").setAttribute("data-option", "circular-queue")
     document.querySelector(".start").style.color = "blue"
     document.querySelector(".start").textContent = "START"
