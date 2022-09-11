@@ -29,16 +29,9 @@ function show() {
 
     arrayParent.appendChild(array)
 
-    if (arrayParent.children.length >= 16) {
+    if (arrayParent.children.length > 13) {
         arrayParent.removeChild(document.getElementById("first-array"))
     }
-
-    let bodyScrollwidth = document.body.scrollWidth
-    window.scrollTo({
-        left: bodyScrollwidth
-    })
-
-    document.querySelector('.controls').scrollLeft = bodyScrollwidth
 
     if (queue.size == 0) {
         let boxes = document.createElement('div')
