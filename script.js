@@ -121,9 +121,9 @@ function insertQueue() {
     } else if (text.value.trim() == "") {
         makeToastNotification("Input Needed!")
     } else {
-        text.value = ""
         let sound = new Audio(`sounds/green.mp3`)
         sound.play()
+        text.value = ""
         show()
     }
 }
