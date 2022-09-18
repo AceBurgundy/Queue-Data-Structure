@@ -147,7 +147,7 @@ body {
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    gap: 5rem;
+    gap: 2rem;
     opacity: 0;
     visibility: hidden;
     transition: 500ms;
@@ -161,7 +161,7 @@ body {
 .title {
     font-size: calc(16px + 6 * ((100vw) / 50));
     color: white;
-    text-shadow: 10px 10px gray;
+    text-shadow: 15px 15px gray;
 }
 
 .menu-options-container {
