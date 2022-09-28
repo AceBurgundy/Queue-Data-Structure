@@ -170,7 +170,7 @@ body {
     width: 100vw;
     align-items: center;
     justify-content: space-evenly;
-    font-size: 5rem;
+    font-size: 3rem;
 }
 
 .menu-options {
@@ -180,7 +180,7 @@ body {
 }
 
 .options {
-    font-size: 3rem;
+    font-size: 2rem;
     color: #fff;
 }
 
@@ -342,6 +342,8 @@ body {
     position: absolute;
     top: 0%;
     right: 0%;
+    background-color: inherit;
+    padding: 1em;
     margin: 1em;
 }
 
