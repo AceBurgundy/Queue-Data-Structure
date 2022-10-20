@@ -1,19 +1,17 @@
 export class Queue {
 
-    constructor() {
-        this.array = []
-        this.size //default queue size
-        this.first = 0
-        this.infinity = false
-        this.last = 0
-        this.valuesAdded = 0 //shows all values added (not including "")
-    }
+    array = []
+    size
+    first = 0
+    queuehasNoSize = false
+    last = 0
+    valuesAdded = 0
 
     empty() {
         if (this.array.length == 0) {
-            return "Queue is empty"
+            return true
         } else {
-            return "Queue is not empty"
+            return false
         }
     }
 
@@ -31,7 +29,7 @@ export class Queue {
 
     insert(element) {
         if (element.length <= 2 && element.length > 0) {
-            if (this.infinity) {
+            if (this.queuehasNoSize) {
                 this.size += 1
                 this.array.push(element)
                 this.last = this.array.lastIndexOf(element)
@@ -57,8 +55,12 @@ export class Queue {
         }
     }
 
+    getSize() {
+        return this.size
+    }
+
     remove() {
-        if (this.infinity) {
+        if (this.queuehasNoSize) {
             if (this.array.length <= 0) {
                 return "Queue underflow"
             } else if (this.array.length == 1 && this.array[0] == "") {
@@ -74,7 +76,7 @@ export class Queue {
                 this.last = this.array.length - 1
             }
         } else {
-            if (this.array.length == 0) {
+            if (this.valuesAdded == 0) {
                 return "Queue underflow"
             } else if (this.first == this.last) {
                 this.array = []
@@ -88,5 +90,17 @@ export class Queue {
                 this.first == this.size - 1 ? this.first = 0 : this.first += 1
             }
         }
+    }
+
+    playWithNoSize(approved) {
+        if (approved) {
+            this.queuehasNoSize = true
+        } else {
+            this.queuehasNoSize = false
+        }
+    }
+
+    setSize(size) {
+        this.size = size
     }
 }
