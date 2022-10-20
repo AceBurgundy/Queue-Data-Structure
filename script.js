@@ -1,28 +1,54 @@
-import { Queue } from "./queueEngine.js"
+import { Queue } from "./queue.js"
 import { makeError, makeToastNotification } from "./helper.js"
 
 let queue = new Queue()
 
-document.querySelector(".start").addEventListener("click", () => {
-    if (document.querySelector(".menu-input").value != "" && document.querySelector(".start").getAttribute("data-option") == 'circular-queue') {
-        queue.size = parseInt(document.querySelector(".menu-input").value)
-        show()
-        document.querySelector(".menu").classList.remove("active")
-    } else if (document.querySelector(".start").getAttribute("data-option") == 'queue') {
-        queue.infinity = 'true'
-        queue.size = 0
-        show()
-        document.querySelector(".menu").classList.remove("active")
-    } else if (document.querySelector(".start").getAttribute("data-option") == 'circular-queue' && document.querySelector(".start").style.color == "blue") {
-        makeToastNotification("Add a size to start")
-    }
+const startButton = document.getElementById("start")
+const menuInput = document.querySelector(".menu-input")
+const menu = document.querySelector(".menu")
+const circularQueueTitle = document.getElementById("circular-queue-text")
+
+// shows input for size
+circularQueueTitle.addEventListener("click", (event) => {
+    event.target.nextElementSibling.style.display = 'block'
 })
+
+// start logic
+startButton.addEventListener("click", (event) => {
+
+    if (startButton.getAttribute("data-option") == 'circular-queue') {
+        if (menuInput.value == "") {
+            makeToastNotification("Cannot be empty")
+            event.preventDefault()
+            return false
+        } else {
+            queue.setSize(menuInput.value)
+            queue.playWithNoSize(false)
+            show()
+            menu.classList.remove("active")
+        }
+    } else {
+        queue.playWithNoSize(true)
+        queue.setSize(0)
+        show()
+        menu.classList.remove("active")
+    }
+
+    setTimeout(() => {
+        gameHint.classList.add("active")
+    }, 2000);
+
+})
+
 
 const arrayParent = document.querySelector(".array-container")
 
+// shows queue
 function show() {
+
     const array = document.createElement("div")
     array.className = "array"
+
     if (arrayParent.firstElementChild != null) {
         arrayParent.firstElementChild.setAttribute("id", "first-array")
     }
@@ -33,7 +59,7 @@ function show() {
         arrayParent.removeChild(document.getElementById("first-array"))
     }
 
-    if (queue.size == 0) {
+    if (queue.getSize() == 0) {
         let boxes = document.createElement('div')
         boxes.className = 'box'
         queue.getQueue()[0] == undefined ? "" : boxes.innerHTML = queue.getQueue()[0]
@@ -47,99 +73,113 @@ function show() {
         array.appendChild(boxes)
     }
 
-    if (array.children[queue.getFirst()] != null) {
-        array.children[queue.getFirst()].setAttribute("id", "first")
-        array.children[queue.getLast()].setAttribute("id", "last")
+    const arrayFirst = array.children[queue.getFirst()]
+    const arrayLast = array.children[queue.getLast()]
+
+    if (arrayFirst != null) {
+        arrayFirst.setAttribute("id", "first")
+        arrayLast.setAttribute("id", "last")
     }
 
-    if (parseInt(queue.getFirst()) === 0 && parseInt(queue.getLast()) == 0) {
-        if (array.children[queue.getFirst()] != null) {
-            array.children[queue.getLast()].style.backgroundColor = "orange"
+    if (queue.getFirst() == 0 && queue.getLast() == 0) {
+        if (arrayFirst != null) {
+            arrayLast.style.backgroundColor = "orange"
+            document.getElementById("orange").textContent = queue.getQueue()[queue.getFirst()]
         }
     } else {
-        array.children[queue.getFirst()].style.backgroundColor = "blue"
-        array.children[queue.getLast()].style.backgroundColor = "red"
+        arrayFirst.style.backgroundColor = "blue"
+        arrayLast.style.backgroundColor = "red"
+        document.getElementById("blue").textContent = queue.getQueue()[queue.getFirst()]
+        document.getElementById("red").textContent = queue.getQueue()[queue.getLast()]
     }
 
-    console.log(`current added values: ${queue.valuesAdded}`);
-    console.log(`current first values: ${queue.first}`);
-    console.log(`current last values: ${queue.last}`);
-    console.log(`current queue size: ${queue.size}`);
-    console.log(queue.getQueue());
 }
+
+// menu UI logic 91-139
 
 document.addEventListener("DOMContentLoaded", () => {
-    document.querySelector(".menu").classList.add("active")
+    menu.classList.add("active")
 })
 
-const text = document.getElementById("inputHolder")
+const gameInput = document.getElementById("inputHolder")
+const gameHint = document.getElementById("hint")
 
-document.querySelector("#inputHolder").addEventListener("click", () => {
-    document.querySelector("#hint").classList.remove("active")
+gameInput.addEventListener("click", (event) => {
+    event.target.classList.remove("active")
 })
 
-document.querySelector("#source").addEventListener("click", () => {
-    window.location.href = 'https://github.com/AceBurgundy/Aceburgundy.github.io'
+const queueText = document.getElementById("queue")
+
+queueText.addEventListener("click", (event) => {
+    startButton.setAttribute("data-option", "queue")
+    startButton.style.color = "red"
+    circularQueueTitle.nextElementSibling.style.display = "none"
+    circularQueueTitle.parentElement.style.backgroundColor = "inherit"
+    startButton.textContent = "START"
+    event.target.style.backgroundColor = "red"
+    event.target.style.padding = "0.2em"
 })
 
-document.querySelector("#queue").addEventListener("click", () => {
-    document.querySelector(".start").setAttribute("data-option", "queue")
-    document.querySelector(".start").style.color = "red"
-    document.querySelector("#circular-queue-text").nextElementSibling.style.display = "none"
-    document.querySelector("#circular-queue-text").parentElement.style.backgroundColor = "inherit"
-    document.querySelector(".start").textContent = "START"
+menuInput.addEventListener("click", (event) => {
+    event.target.parentElement.style.backgroundColor = "blue"
+    startButton.setAttribute("data-option", "circular-queue")
+    startButton.style.color = "blue"
+    startButton.textContent = "START"
+    circularQueueTitle.parentElement.style.padding = "0.5em"
 })
 
-document.querySelector(".menu-input").addEventListener("click", () => {
-    document.querySelector(".menu-input").parentElement.style.backgroundColor = "blue"
-    document.querySelector(".start").setAttribute("data-option", "circular-queue")
-    document.querySelector(".start").style.color = "blue"
-    document.querySelector(".start").textContent = "START"
-    document.querySelector("#circular-queue-text").parentElement.style.padding = "0.5em"
-})
-document.querySelector("#circular-queue-text").addEventListener("click", () => {
-    document.querySelector("#circular-queue-text").nextElementSibling.style.display = "block"
-    document.querySelector("#circular-queue-text").parentElement.style.backgroundColor = "blue"
-    document.querySelector("#circular-queue-text").parentElement.style.padding = "0.5em"
-    document.querySelector(".start").setAttribute("data-option", "circular-queue")
-    document.querySelector(".start").style.color = "blue"
-    document.querySelector(".start").textContent = "START"
+circularQueueTitle.addEventListener("click", (event) => {
+    event.target.nextElementSibling.style.display = "block"
+    event.target.parentElement.style.backgroundColor = "blue"
+    event.target.parentElement.style.padding = "0.5em"
+    queueText.style.backgroundColor = "inherit"
+    startButton.setAttribute("data-option", "circular-queue")
+    startButton.style.color = "blue"
+    startButton.textContent = "START"
 })
 
-document.querySelector(".start").addEventListener("click", () => {
-    setTimeout(() => {
-        document.querySelector("#hint").classList.add("active")
-    }, 2000);
-})
-
+// insertQueue() function
 function insertQueue() {
-    document.querySelector("#hint").classList.remove("active")
-    if (queue.insert(text.value) == "Queue overflow!") {
+
+    gameHint.classList.remove("active")
+
+    if (queue.insert(gameInput.value) == "Queue overflow!") {
         makeError("Queue Overflow!")
-    } else if (text.value.length > 2) {
-        makeToastNotification("Choose 2 or less!")
-    } else if (text.value.trim() == "") {
-        makeToastNotification("Input Needed!")
-    } else {
-        let sound = new Audio(`sounds/green.mp3`)
-        sound.play()
-        text.value = ""
-        show()
+        return false
     }
+
+    if (gameInput.value.length > 2) {
+        makeToastNotification("Choose 2 or less!")
+        return false
+    }
+
+    if (gameInput.value.trim() == "") {
+        makeToastNotification("Input Needed!")
+        return false
+    }
+
+    let sound = new Audio(`sounds/green.mp3`)
+    sound.play()
+    gameInput.value = ""
+    show()
+
 }
 
-document.addEventListener("keyup", (e) => {
-    if (!document.querySelector(".menu").classList.contains("active")) {
-        if (e.key == 'Enter') {
+// calls insert function on keypress
+document.addEventListener("keyup", (event) => {
+    if (!menu.classList.contains("active")) {
+        if (event.key == 'Enter') {
             insertQueue()
         }
     }
 })
 
-document.getElementById("insert").addEventListener("click", () => {
+// calls insert function on click
+document.getElementById("insert").addEventListener("click", (event) => {
     insertQueue()
 })
 
+// calls remove() method on click else underflow
 document.getElementById("remove").addEventListener("click", () => {
     if (queue.remove() == "Queue underflow") {
         makeError("Queue Underflow!")
@@ -150,18 +190,46 @@ document.getElementById("remove").addEventListener("click", () => {
     }
 })
 
+// reset logic lines 193-204
 document.querySelector(".reset").addEventListener("click", () => {
     document.querySelector(".prompt").classList.add("active")
 })
 
-document.querySelector("#yes").addEventListener("click", () => {
+document.getElementById("yes").addEventListener("click", () => {
     window.location.reload();
 })
 
-document.querySelector("#no").addEventListener("click", () => {
+document.getElementById("no").addEventListener("click", () => {
     document.querySelector(".prompt").classList.remove("active")
 })
 
-document.querySelector("#empty").addEventListener("click", () => {
-    makeToastNotification(queue.empty())
+// calls empty() method on click
+document.getElementById("empty").addEventListener("click", () => {
+    if (queue.empty()) {
+        makeToastNotification("Queue is empty")
+    } else {
+        makeToastNotification("Queue is not empty")
+    }
 })
+
+// media querries lines 216-235
+if (window.screen.availHeight > window.screen.availWidth) {
+    document.querySelector(".error-message").classList.add("phone")
+    document.querySelector(".menu-options-container").style.flexDirection = 'column'
+    document.querySelector(".menu-options").style.marginBottom = '0.5em'
+    document.getElementById("start").textContent = '^ CHOOSE'
+    document.getElementById("insert").textContent = 'I'
+    document.getElementById("remove").textContent = 'R'
+    document.getElementById("empty").textContent = 'E'
+    document.querySelector(".controls").style.gap = "0.2rem"
+    document.querySelector(".array-container").style.height = "fit-content"
+    document.querySelectorAll(".button").forEach(button => {
+        button.style.width = "90%"
+    })
+    document.querySelector(".legend").style.flexDirection = "column"
+    gameHint.style.display = 'none';
+    document.getElementById("bottom").style.position = "fixed";
+    document.getElementById("bottom").style.bottom = "1%";
+    document.getElementById("top").style.position = "fixed";
+    document.getElementById("top").style.top = "1%";
+};
