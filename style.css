@@ -201,7 +201,7 @@ body {
     margin: 0 auto;
     align-items: center;
     justify-content: space-evenly;
-    font-size: 5rem;
+    font-size: 3rem;
 }
 
 .menu-options {
@@ -380,6 +380,11 @@ body {
 .legend {
     display: flex;
     gap: 2rem;
+    position: absolute;
+    top: 0%;
+    right: 0%;
+    background-color: inherit;
+    padding: 1em;
     margin: 1em;
 }
 
