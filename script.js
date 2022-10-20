@@ -21,6 +21,10 @@ startButton.addEventListener("click", (event) => {
             makeToastNotification("Cannot be empty")
             event.preventDefault()
             return false
+        } else if (menuInput.value > 6) {
+            makeToastNotification("You can choose up to 6 only")
+            event.preventDefault()
+            return false
         } else {
             queue.setSize(menuInput.value)
             queue.playWithNoSize(false)
@@ -55,7 +59,7 @@ function show() {
 
     arrayParent.appendChild(array)
 
-    if (arrayParent.children.length > 13) {
+    if (arrayParent.children.length > 18) {
         arrayParent.removeChild(document.getElementById("first-array"))
     }
 
@@ -233,4 +237,5 @@ if (window.screen.availHeight > window.screen.availWidth) {
     document.getElementById("bottom").style.bottom = "1%"
     document.getElementById("top").style.position = "fixed"
     document.getElementById("top").style.top = "1%"
+    document.querySelector("#middle").style.alignItems = "flex-end"
 }

@@ -349,7 +349,7 @@ body {
     display: flex;
     width: 90%;
     justify-content: flex-start;
-    align-items: flex-end;
+    align-items: center;
     margin: 0 auto;
 }
 
@@ -373,7 +373,7 @@ body {
     height: calc(16px + 2 * ((100vw) / 100));
     padding: 0.5em;
     font-family: var(--game-font);
-    font-size: calc(16px + 1 * ((100vw) / 45));
+    font-size: calc(16px + 1 * ((100vw) / 150));
 }
 
 .legend {
