@@ -30,7 +30,6 @@ body {
     display: grid;
     grid-template-rows: 15% 70% 15%;
     grid-template-areas: "top" "middle" "bottom";
-    overflow-y: hidden;
 }
 
 #top {

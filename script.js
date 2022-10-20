@@ -36,7 +36,7 @@ startButton.addEventListener("click", (event) => {
 
     setTimeout(() => {
         gameHint.classList.add("active")
-    }, 2000);
+    }, 2000)
 
 })
 
@@ -196,7 +196,7 @@ document.querySelector(".reset").addEventListener("click", () => {
 })
 
 document.getElementById("yes").addEventListener("click", () => {
-    window.location.reload();
+    window.location.reload()
 })
 
 document.getElementById("no").addEventListener("click", () => {
@@ -226,10 +226,11 @@ if (window.screen.availHeight > window.screen.availWidth) {
     document.querySelectorAll(".button").forEach(button => {
         button.style.width = "90%"
     })
+    document.getElementById("game").style.overflowY = "hidden"
     document.querySelector(".legend").style.flexDirection = "column"
-    gameHint.style.display = 'none';
-    document.getElementById("bottom").style.position = "fixed";
-    document.getElementById("bottom").style.bottom = "1%";
-    document.getElementById("top").style.position = "fixed";
-    document.getElementById("top").style.top = "1%";
-};
+    gameHint.style.display = 'none'
+    document.getElementById("bottom").style.position = "fixed"
+    document.getElementById("bottom").style.bottom = "1%"
+    document.getElementById("top").style.position = "fixed"
+    document.getElementById("top").style.top = "1%"
+}
