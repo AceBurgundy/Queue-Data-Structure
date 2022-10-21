@@ -36,6 +36,8 @@ startButton.addEventListener("click", (event) => {
         queue.setSize(0)
         show()
         menu.classList.remove("active")
+        document.getElementById("middle").style.alignItems = "flex-end"
+        document.querySelector(".array-container").style.alignItems = "flex-end"
     }
 
     setTimeout(() => {
