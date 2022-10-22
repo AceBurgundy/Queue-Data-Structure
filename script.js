@@ -112,6 +112,10 @@ function insertQueue() {
 
     gameHint.classList.remove("active")
 
+    if (screen.height > screen.width) {
+        game.scrollLeft = game.scrollWidth
+    }
+
     if (queue.overflow()) {
         makeError("Queue Overflow!")
         return false
@@ -137,6 +141,9 @@ function insertQueue() {
 
 // calls insert function on keypress
 document.addEventListener("keyup", (event) => {
+
+    gameHint.classList.remove("active")
+
     if (!menu.classList.contains("active")) {
         if (event.key == 'Enter') {
             insertQueue()
@@ -146,11 +153,18 @@ document.addEventListener("keyup", (event) => {
 
 // calls insert function on click
 document.getElementById("insert").addEventListener("click", () => {
+    gameHint.classList.remove("active")
     insertQueue()
 })
 
 // calls remove() method on click else underflow
 document.getElementById("remove").addEventListener("click", () => {
+
+    gameHint.classList.remove("active")
+
+    if (screen.height > screen.width) {
+        game.scrollLeft = game.scrollWidth
+    }
 
     if (queue.isEmpty()) {
         makeError("Queue Underflow!")
@@ -164,7 +178,7 @@ document.getElementById("remove").addEventListener("click", () => {
 
 })
 
-// reset logic lines 193-204
+// reset logic lines
 document.querySelector(".reset").addEventListener("click", () => {
     document.getElementById("prompt").classList.add("active")
 })
@@ -229,7 +243,6 @@ circularQueueTitle.addEventListener("click", (event) => {
     startButton.textContent = "START"
 })
 
-
 // media querries lines
 if (window.screen.availHeight > window.screen.availWidth) {
     document.getElementById("error-message").classList.add("phone")
@@ -251,6 +264,5 @@ if (window.screen.availHeight > window.screen.availWidth) {
     document.getElementById("bottom").style.bottom = "1%"
     document.getElementById("top").style.position = "fixed"
     document.getElementById("top").style.top = "1%"
-    document.querySelector("#middle").style.alignItems = "flex-end"
     document.getElementById("prompt-options").style.flexDirection = "column"
 }
