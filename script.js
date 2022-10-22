@@ -193,6 +193,9 @@ document.getElementById("no").addEventListener("click", () => {
 
 // calls empty() method on click
 document.getElementById("empty").addEventListener("click", () => {
+    
+    hint.classList.remove("active")
+    
     if (queue.isEmpty()) {
         makeToastNotification("Queue is empty")
     } else {
