@@ -13,40 +13,43 @@
 </head>
 
 <body>
-    <div class="menu">
+    <div id="menu">
         <div class="menu-center">
-            <p class="title">Queue</p>
-            <div class="menu-options-container">
-                <div class="menu-options">
+            <p id="title">Queue</p>
+            <div id="menu-options-container">
+                <div id="menu-options">
                     <div class="options" id="queue">
                         <p>Queue</p>
                     </div>
                     <div class="options" id="circular-queue">
                         <p id="circular-queue-text">Circular Queue</p>
-                        <input class="menu-input" type="number" placeholder="size">
+                        <input id="menu-input" type="number" placeholder="size">
                     </div>
                 </div>
                 <p class="options" id="start" data-option="">
                     CHOOSE</p>
             </div>
         </div>
-        <p class="author">By: Sabalo BSCS</p>
-        <a href="https://github.com/AceBurgundy/Queue-data-structure" target="_blank" id="source">SOURCE</a>
+        <p id="author">By: Sabalo BSCS</p>
+        <a href="https://drive.google.com/drive/folders/1pTcM2p3zmEkdft_DOoW5HnSoI20PRhFc?usp=sharing" target="_blank" id="source">SOURCE</a>
     </div>
 
-    <div class="prompt">
+    <div id="prompt">
         <p>Are you sure?</p>
-        <div class="prompt-options">
+        <div id="prompt-options">
             <div class="option" id="yes">YES</div>
             <div class="option" id="no">NO</div>
         </div>
     </div>
-    <p class="toast-message"></p>
-    <div class="error">
-        <p class="error-message"></p>
+
+    <p id="toast-message"></p>
+
+    <div id="error">
+        <p id="error-message"></p>
     </div>
+
     <div id="game">
-        <div id="top">
+        <section id="top">
             <div class="reset"><svg version="1.0" xmlns="http://www.w3.org/2000/svg" width="40.000000pt" height="40.000000pt" viewBox="0 0 90.000000 90.000000" preserveAspectRatio="xMidYMid meet">
             <g transform="translate(0.000000,90.000000) scale(0.100000,-0.100000)"
             fill="#ffffff" stroke="none">
@@ -74,12 +77,12 @@
                     <p class="legend-name">BOTH</p>
                 </div>
             </div>
-        </div>
-        <div id="middle">
+        </section>
+        <section id="middle">
             <div class="array-container">
             </div>
-        </div>
-        <div id="bottom">
+        </section>
+        <section id="bottom">
             <div class="controls">
                 <div class="button insert" id="insert">INSERT</div>
                 <div class="button" id="input-getter">
@@ -91,7 +94,7 @@
                 <div class="button" id="remove">REMOVE</div>
                 <div class="button" id="empty">EMPTY</div>
             </div>
-        </div>
+        </section>
     </div>
 </body>
 
