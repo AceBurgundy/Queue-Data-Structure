@@ -186,32 +186,6 @@ document.getElementById("empty").addEventListener("click", () => {
     }
 })
 
-// media querries lines
-if (window.screen.availHeight > window.screen.availWidth) {
-    document.getElementById("error-message").classList.add("phone")
-    document.getElementById("menu-options-container").style.flexDirection = 'column'
-    document.getElementById("menu-options").style.marginBottom = '0.5em'
-    document.getElementById("start").textContent = '^ CHOOSE'
-    document.getElementById("insert").textContent = 'I'
-    document.getElementById("remove").textContent = 'R'
-    document.getElementById("empty").textContent = 'E'
-    document.querySelector(".controls").style.gap = "0.2rem"
-    document.querySelector(".array-container").style.height = "fit-content"
-    document.querySelectorAll(".button").forEach(button => {
-        button.style.width = "90%"
-    })
-    document.getElementById("game").style.overflowY = "hidden"
-    document.querySelector(".legend").style.flexDirection = "column"
-    gameHint.style.display = 'none'
-    document.getElementById("bottom").style.position = "fixed"
-    document.getElementById("bottom").style.bottom = "1%"
-    document.getElementById("top").style.position = "fixed"
-    document.getElementById("top").style.top = "1%"
-    document.querySelector("#middle").style.alignItems = "flex-end"
-    document.getElementById("prompt-options").style.flexDirection = "column"
-}
-
-
 // menu UI logic
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -254,3 +228,29 @@ circularQueueTitle.addEventListener("click", (event) => {
     startButton.style.color = "blue"
     startButton.textContent = "START"
 })
+
+
+// media querries lines
+if (window.screen.availHeight > window.screen.availWidth) {
+    document.getElementById("error-message").classList.add("phone")
+    document.getElementById("menu-options-container").style.flexDirection = 'column'
+    document.getElementById("menu-options").style.marginBottom = '0.5em'
+    document.getElementById("start").textContent = '^ CHOOSE'
+    document.getElementById("insert").textContent = 'I'
+    document.getElementById("remove").textContent = 'R'
+    document.getElementById("empty").textContent = 'E'
+    document.querySelector(".controls").style.gap = "0.2rem"
+    document.querySelector(".array-container").style.height = "fit-content"
+    document.querySelectorAll(".button").forEach(button => {
+        button.style.width = "90%"
+    })
+    document.getElementById("game").style.overflowY = "hidden"
+    document.querySelector(".legend").style.flexDirection = "column"
+    gameHint.style.display = 'none'
+    document.getElementById("bottom").style.position = "fixed"
+    document.getElementById("bottom").style.bottom = "1%"
+    document.getElementById("top").style.position = "fixed"
+    document.getElementById("top").style.top = "1%"
+    document.querySelector("#middle").style.alignItems = "flex-end"
+    document.getElementById("prompt-options").style.flexDirection = "column"
+}
