@@ -17,27 +17,33 @@ circularQueueTitle.addEventListener("click", (event) => {
 startButton.addEventListener("click", (event) => {
 
     if (startButton.getAttribute("data-option") == 'circular-queue') {
+
         if (menuInput.value == "") {
             makeToastNotification("Cannot be empty")
             event.preventDefault()
             return false
-        } else if (menuInput.value > 6) {
+        }
+
+        if (menuInput.value > 6) {
             makeToastNotification("You can choose up to 6 only")
             event.preventDefault()
             return false
-        } else {
-            queue.setSize(menuInput.value)
-            queue.playWithNoSize(false)
-            show()
-            menu.classList.remove("active")
         }
+
+        queue.setSize(menuInput.value)
+        queue.playWithNoSize(false)
+        show()
+        menu.classList.remove("active")
+
     } else {
+
         queue.playWithNoSize(true)
         queue.setSize(0)
         show()
         menu.classList.remove("active")
         document.getElementById("middle").style.alignItems = "flex-end"
         document.querySelector(".array-container").style.alignItems = "flex-end"
+
     }
 
     setTimeout(() => {
@@ -101,7 +107,112 @@ function show() {
 
 }
 
-// menu UI logic 91-139
+// insertQueue() function
+function insertQueue() {
+
+    gameHint.classList.remove("active")
+
+    if (queue.overflow()) {
+        makeError("Queue Overflow!")
+        return false
+    }
+
+    if (gameInput.value.length > 2) {
+        makeToastNotification("Choose 2 or less!")
+        return false
+    }
+
+    if (gameInput.value.trim() == "") {
+        makeToastNotification("Input Needed!")
+        return false
+    }
+
+    let sound = new Audio(`sounds/green.mp3`)
+    sound.play()
+    queue.insert(gameInput.value)
+    gameInput.value = ""
+    show()
+
+}
+
+// calls insert function on keypress
+document.addEventListener("keyup", (event) => {
+    if (!menu.classList.contains("active")) {
+        if (event.key == 'Enter') {
+            insertQueue()
+        }
+    }
+})
+
+// calls insert function on click
+document.getElementById("insert").addEventListener("click", () => {
+    insertQueue()
+})
+
+// calls remove() method on click else underflow
+document.getElementById("remove").addEventListener("click", () => {
+
+    if (queue.isEmpty()) {
+        makeError("Queue Underflow!")
+        return false
+    }
+
+    let sound = new Audio(`sounds/yellow.mp3`)
+    sound.play()
+    queue.remove()
+    show()
+
+})
+
+// reset logic lines 193-204
+document.querySelector(".reset").addEventListener("click", () => {
+    document.querySelector(".prompt").classList.add("active")
+})
+
+document.getElementById("yes").addEventListener("click", () => {
+    window.location.reload()
+})
+
+document.getElementById("no").addEventListener("click", () => {
+    document.querySelector(".prompt").classList.remove("active")
+})
+
+// calls empty() method on click
+document.getElementById("empty").addEventListener("click", () => {
+    if (queue.isEmpty()) {
+        makeToastNotification("Queue is empty")
+    } else {
+        makeToastNotification("Queue is not empty")
+    }
+})
+
+// media querries lines
+if (window.screen.availHeight > window.screen.availWidth) {
+    document.querySelector(".error-message").classList.add("phone")
+    document.querySelector(".menu-options-container").style.flexDirection = 'column'
+    document.querySelector(".menu-options").style.marginBottom = '0.5em'
+    document.getElementById("start").textContent = '^ CHOOSE'
+    document.getElementById("insert").textContent = 'I'
+    document.getElementById("remove").textContent = 'R'
+    document.getElementById("empty").textContent = 'E'
+    document.querySelector(".controls").style.gap = "0.2rem"
+    document.querySelector(".array-container").style.height = "fit-content"
+    document.querySelectorAll(".button").forEach(button => {
+        button.style.width = "90%"
+    })
+    document.getElementById("game").style.overflowY = "hidden"
+    document.querySelector(".legend").style.flexDirection = "column"
+    gameHint.style.display = 'none'
+    document.getElementById("bottom").style.position = "fixed"
+    document.getElementById("bottom").style.bottom = "1%"
+    document.getElementById("top").style.position = "fixed"
+    document.getElementById("top").style.top = "1%"
+    document.querySelector("#middle").style.alignItems = "flex-end"
+    document.querySelector(".prompt-options").style.flexDirection = "column"
+}
+
+
+// menu UI logic
 
 document.addEventListener("DOMContentLoaded", () => {
     menu.classList.add("active")
@@ -143,102 +254,3 @@ circularQueueTitle.addEventListener("click", (event) => {
     startButton.style.color = "blue"
     startButton.textContent = "START"
 })
-
-// insertQueue() function
-function insertQueue() {
-
-    gameHint.classList.remove("active")
-
-    if (queue.insert(gameInput.value) == "Queue overflow!") {
-        makeError("Queue Overflow!")
-        return false
-    }
-
-    if (gameInput.value.length > 2) {
-        makeToastNotification("Choose 2 or less!")
-        return false
-    }
-
-    if (gameInput.value.trim() == "") {
-        makeToastNotification("Input Needed!")
-        return false
-    }
-
-    let sound = new Audio(`sounds/green.mp3`)
-    sound.play()
-    gameInput.value = ""
-    show()
-
-}
-
-// calls insert function on keypress
-document.addEventListener("keyup", (event) => {
-    if (!menu.classList.contains("active")) {
-        if (event.key == 'Enter') {
-            insertQueue()
-        }
-    }
-})
-
-// calls insert function on click
-document.getElementById("insert").addEventListener("click", (event) => {
-    insertQueue()
-})
-
-// calls remove() method on click else underflow
-document.getElementById("remove").addEventListener("click", () => {
-    if (queue.remove() == "Queue underflow") {
-        makeError("Queue Underflow!")
-    } else {
-        let sound = new Audio(`sounds/yellow.mp3`)
-        sound.play()
-        show()
-    }
-})
-
-// reset logic lines 193-204
-document.querySelector(".reset").addEventListener("click", () => {
-    document.querySelector(".prompt").classList.add("active")
-})
-
-document.getElementById("yes").addEventListener("click", () => {
-    window.location.reload()
-})
-
-document.getElementById("no").addEventListener("click", () => {
-    document.querySelector(".prompt").classList.remove("active")
-})
-
-// calls empty() method on click
-document.getElementById("empty").addEventListener("click", () => {
-    if (queue.empty()) {
-        makeToastNotification("Queue is empty")
-    } else {
-        makeToastNotification("Queue is not empty")
-    }
-})
-
-// media querries lines 216-235
-if (window.screen.availHeight > window.screen.availWidth) {
-    document.querySelector(".error-message").classList.add("phone")
-    document.querySelector(".menu-options-container").style.flexDirection = 'column'
-    document.querySelector(".menu-options").style.marginBottom = '0.5em'
-    document.getElementById("start").textContent = '^ CHOOSE'
-    document.getElementById("insert").textContent = 'I'
-    document.getElementById("remove").textContent = 'R'
-    document.getElementById("empty").textContent = 'E'
-    document.querySelector(".controls").style.gap = "0.2rem"
-    document.querySelector(".array-container").style.height = "fit-content"
-    document.querySelectorAll(".button").forEach(button => {
-        button.style.width = "90%"
-    })
-    document.getElementById("game").style.overflowY = "hidden"
-    document.querySelector(".legend").style.flexDirection = "column"
-    gameHint.style.display = 'none'
-    document.getElementById("bottom").style.position = "fixed"
-    document.getElementById("bottom").style.bottom = "1%"
-    document.getElementById("top").style.position = "fixed"
-    document.getElementById("top").style.top = "1%"
-    document.querySelector("#middle").style.alignItems = "flex-end"
-    document.querySelector(".prompt-options").style.flexDirection = "column"
-}
