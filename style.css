@@ -286,10 +286,11 @@ body {
 }
 
 .prompt p {
-    font-size: 5rem;
+    font-size: calc(16px + 1 * ((100vw) / 25));
     background-color: #1d2124;
     color: white;
     padding: 0.5em;
+    width: min-content;
     font-family: var(--game-font);
 }
 
@@ -304,8 +305,9 @@ body {
 .prompt-options {
     display: flex;
     justify-content: space-evenly;
-    width: 100vw;
-    font-size: 5rem;
+    width: fit-content;
+    gap: 1em;
+    font-size: calc(16px + 1 * ((100vw) / 25));
 }
 
 .error {
