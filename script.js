@@ -4,8 +4,8 @@ import { makeError, makeToastNotification } from "./helper.js"
 let queue = new Queue()
 
 const startButton = document.getElementById("start")
-const menuInput = document.querySelector(".menu-input")
-const menu = document.querySelector(".menu")
+const menuInput = document.getElementById("menu-input")
+const menu = document.getElementById("menu")
 const circularQueueTitle = document.getElementById("circular-queue-text")
 
 // shows input for size
@@ -166,7 +166,7 @@ document.getElementById("remove").addEventListener("click", () => {
 
 // reset logic lines 193-204
 document.querySelector(".reset").addEventListener("click", () => {
-    document.querySelector(".prompt").classList.add("active")
+    document.getElementById("prompt").classList.add("active")
 })
 
 document.getElementById("yes").addEventListener("click", () => {
@@ -174,7 +174,7 @@ document.getElementById("yes").addEventListener("click", () => {
 })
 
 document.getElementById("no").addEventListener("click", () => {
-    document.querySelector(".prompt").classList.remove("active")
+    document.getElementById("prompt").classList.remove("active")
 })
 
 // calls empty() method on click
@@ -188,9 +188,9 @@ document.getElementById("empty").addEventListener("click", () => {
 
 // media querries lines
 if (window.screen.availHeight > window.screen.availWidth) {
-    document.querySelector(".error-message").classList.add("phone")
-    document.querySelector(".menu-options-container").style.flexDirection = 'column'
-    document.querySelector(".menu-options").style.marginBottom = '0.5em'
+    document.getElementById("error-message").classList.add("phone")
+    document.getElementById("menu-options-container").style.flexDirection = 'column'
+    document.getElementById("menu-options").style.marginBottom = '0.5em'
     document.getElementById("start").textContent = '^ CHOOSE'
     document.getElementById("insert").textContent = 'I'
     document.getElementById("remove").textContent = 'R'
@@ -208,7 +208,7 @@ if (window.screen.availHeight > window.screen.availWidth) {
     document.getElementById("top").style.position = "fixed"
     document.getElementById("top").style.top = "1%"
     document.querySelector("#middle").style.alignItems = "flex-end"
-    document.querySelector(".prompt-options").style.flexDirection = "column"
+    document.getElementById("prompt-options").style.flexDirection = "column"
 }
 
 
@@ -249,7 +249,7 @@ circularQueueTitle.addEventListener("click", (event) => {
     event.target.nextElementSibling.style.display = "block"
     event.target.parentElement.style.backgroundColor = "blue"
     event.target.parentElement.style.padding = "0.5em"
-    queueText.style.backgroundColor = "inherit"
+    queueText.firstElementChild.style.backgroundColor = "inherit"
     startButton.setAttribute("data-option", "circular-queue")
     startButton.style.color = "blue"
     startButton.textContent = "START"
