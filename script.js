@@ -240,4 +240,5 @@ if (window.screen.availHeight > window.screen.availWidth) {
     document.getElementById("top").style.position = "fixed"
     document.getElementById("top").style.top = "1%"
     document.querySelector("#middle").style.alignItems = "flex-end"
+    document.querySelector(".prompt-options").style.flexDirection = "column"
 }
