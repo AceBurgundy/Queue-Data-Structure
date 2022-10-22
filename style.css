@@ -146,7 +146,7 @@ body {
     }
 }
 
-.toast-message {
+#toast-message {
     font-family: var(--game-font);
     font-size: 3rem;
     background-color: #25292C;
@@ -160,11 +160,11 @@ body {
     transition: 500ms ease-in-out;
 }
 
-.toast-message.active {
+#toast-message.active {
     top: 2%;
 }
 
-.menu {
+#menu {
     position: fixed;
     height: 100vh;
     width: 100vw;
@@ -180,12 +180,12 @@ body {
     transition: 500ms;
 }
 
-.menu.active {
+#menu.active {
     opacity: 1;
     visibility: visible;
 }
 
-.title {
+#title {
     font-size: calc(16px + 6 * ((100vw) / 55));
     color: white;
     text-align: center;
@@ -193,7 +193,7 @@ body {
     margin-bottom: calc(16px + 6 * ((40vw) / 50));
 }
 
-.menu-options-container {
+#menu-options-container {
     display: flex;
     flex-direction: row;
     width: 90vw;
@@ -203,7 +203,7 @@ body {
     font-size: 3rem;
 }
 
-.menu-options {
+#menu-options {
     display: flex;
     flex-direction: column;
     gap: calc(16px + 6 * ((40vw) / 50));
@@ -245,7 +245,7 @@ body {
     cursor: pointer;
 }
 
-.author,
+#author,
 #source {
     font-size: 1.5rem;
     color: white;
@@ -253,7 +253,7 @@ body {
     margin: 1em;
 }
 
-.author {
+#author {
     right: 0%;
     bottom: 0%;
 }
@@ -264,7 +264,7 @@ body {
     text-decoration: none;
 }
 
-.prompt {
+#prompt {
     position: fixed;
     height: 100vh;
     width: 100vw;
@@ -280,12 +280,12 @@ body {
     transition: 200ms;
 }
 
-.prompt.active {
+#prompt.active {
     opacity: 1;
     visibility: visible;
 }
 
-.prompt p {
+#prompt p {
     font-size: calc(16px + 1 * ((100vw) / 25));
     background-color: #1d2124;
     color: white;
@@ -302,7 +302,7 @@ body {
     cursor: pointer;
 }
 
-.prompt-options {
+#prompt-options {
     display: flex;
     justify-content: space-evenly;
     width: fit-content;
@@ -310,7 +310,7 @@ body {
     font-size: calc(16px + 1 * ((100vw) / 25));
 }
 
-.error {
+#error {
     height: 100vh;
     width: 100vw;
     background-color: red;
@@ -324,12 +324,12 @@ body {
     transition: 500ms;
 }
 
-.error.active {
+#error.active {
     opacity: 1;
     visibility: visible;
 }
 
-.error-message {
+#error-message {
     font-family: var(--game-font);
     font-size: calc(16px + 1 * ((100vw) / 25));
     text-shadow: 10px 10px #717b82;
@@ -339,7 +339,7 @@ body {
     padding: 0.5em;
 }
 
-.error-message.phone {
+#error-message.phone {
     display: flex;
     flex-direction: column;
     width: 100%;
@@ -464,7 +464,7 @@ svg {
 }
 
 .game-input,
-.menu-input {
+#menu-input {
     font-size: calc(16px + 1 * ((100vw) / 70));
     background-color: inherit;
     width: 400px;
@@ -493,7 +493,7 @@ svg {
     }
 }
 
-.menu-input {
+#menu-input {
     max-width: 100%;
     width: 90%;
     background-color: #171c22;
@@ -518,7 +518,7 @@ html {
 }
 
 @media screen and (min-width: 900px) {
-    .title {
+    #title {
         text-shadow: 20px 20px rgb(176, 153, 153);
     }
 }
