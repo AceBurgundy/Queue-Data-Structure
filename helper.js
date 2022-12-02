@@ -7,8 +7,10 @@ export function makeToastNotification(message) {
     }, 2000);
 }
 
+let sound = new Audio(`sounds/wrong.mp3`)
+sound.preload = "auto"
+
 export function makeError(message) {
-    let sound = new Audio(`sounds/wrong.mp3`)
     sound.play()
     document.getElementById("error-message").textContent = message
     document.getElementById("error").classList.add("active")
