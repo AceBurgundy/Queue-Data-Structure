@@ -8,6 +8,28 @@ const menuInput = document.getElementById("menu-input")
 const menu = document.getElementById("menu")
 const circularQueueTitle = document.getElementById("circular-queue-text")
 
+const context = new AudioContext()
+let audioFiles = {}
+let sound = ["green", "yellow"]
+
+for (let index = 0; index < sound.length; index++) {
+
+    fetch(`sounds/${sound[index]}.mp3`)
+        .then(data => data.arrayBuffer())
+        .then(arrayBuffer => context.decodeAudioData(arrayBuffer))
+        .then(decodedAudio => {
+            audioFiles[sound[index]] = decodedAudio
+        })
+
+}
+
+function playSound(color) {
+    const play = context.createBufferSource()
+    play.buffer = audioFiles[color]
+    play.connect(context.destination)
+    play.start(context.currentTime)
+}
+
 // shows input for size
 circularQueueTitle.addEventListener("click", (event) => {
     event.target.nextElementSibling.style.display = 'block'
@@ -131,8 +153,7 @@ function insertQueue() {
         return false
     }
 
-    let sound = new Audio(`sounds/green.mp3`)
-    sound.play()
+    playSound("green")
     queue.insert(gameInput.value)
     gameInput.value = ""
     show()
@@ -171,8 +192,7 @@ document.getElementById("remove").addEventListener("click", () => {
         return false
     }
 
-    let sound = new Audio(`sounds/yellow.mp3`)
-    sound.play()
+    playSound("yellow")
     queue.remove()
     show()
 
@@ -193,9 +213,9 @@ document.getElementById("no").addEventListener("click", () => {
 
 // calls empty() method on click
 document.getElementById("empty").addEventListener("click", () => {
-    
+
     hint.classList.remove("active")
-    
+
     if (queue.isEmpty()) {
         makeToastNotification("Queue is empty")
     } else {
